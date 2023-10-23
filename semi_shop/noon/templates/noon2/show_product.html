@@ -1,0 +1,42 @@
+{% extends 'noon2/base.html' %}
+{% load static %}
+{% block title %} noon enhance {% endblock %}
+
+{% block body %}
+<div class="card  mt-5" style="max-width: 80%;">
+    <div class="row g-0">
+        <div class="col-md-5 my-auto ">
+            <img src="{{product.get_image_url}}" class="img-fluid rounded-start p-2 shadow" alt="...">
+        </div>
+        <div class="col-md-7">
+            <div class="card-body ms-3  d-flex flex-column">
+                <h5 class="card-title">{{product.title}}</h5>
+                <p class="card-text"><strong>description:</strong> {{product.description}}</p>
+                <p class="card-text"><strong>price:</strong> {{product.price}}$</p>
+                <p class="card-text"><strong>owner:</strong> {{product.owner.username}}</p>
+                {% if product.stock > 0 %}
+                <div class="d-flex ">
+                    <p class="item-overview text-body-secondary  btn btn-outline-success"> instock</p>
+                    <p
+                        class="item-overview text-body-secondary border  border-success border-2 ms-5 rounded-3 px-3 py-1">
+                        left:{{product.stock}} items</p>
+
+                </div>
+                {% else %}
+                <p class="item-overview text-body-secondary btn btn-outline-danger my-3"> out of stock</p>
+                {% endif %}
+
+                <div class="d-flex justify-items-center flex-column"><a class="btn btn-success w-75 my-2 p-1 mx-auto" href="{%  url  'noon2.products' %}">home </a>
+
+          
+                {% if user.id == product.owner.id%}
+            <a class="btn btn-info w-75 my-2 p-1 mx-auto" href="{{ product.update }}">update </a></div>
+                {% endif %}
+                <p class="card-text"><small class="text-body-secondary">update_at : {{product.update_at}}</small></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

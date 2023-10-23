@@ -1,0 +1,36 @@
+{% extends 'noon2/base.html' %}
+{% load static %}
+{% block title %} noon enhance {% endblock %}
+
+{% block body %}
+<h2 class="mt-5 me-3">Search Results for: {{text}} </h2>
+<hr>
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {% for item in data %}
+    <div class="col shadow p-2">
+        <div class="card h-100">
+            <img src="{{item.get_image_url}}" class="card-img-top h-75 shadow" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{item.title}}</h5>
+                <p class="card-text text-truncate">{{item.description}}</p>
+                <p class="card-text ">category: {{item.category}}</p>
+                <p class="card-text">owner: {{item.owner}}</p>
+            </div>
+            <div class="d-flex justify-content-evenly">
+            <a class="btn btn-outline-success my-3 " href="{%  url  'noon2.show_product' item.id %}"> show
+                details</a>
+            {% if user.id == item.owner.id%}
+            <a class="btn btn-outline-danger my-3  " href="{% url 'noon.delete' item.id %}"> Delete</a>
+            <a class="btn btn-outline-info my-3 " href="{{item.update}}"> UPDATE</a>
+            {% endif %}
+        </div>
+            <div class="card-footer">
+                <small class="text-body-secondary">update_at : {{item.update_at}}</small>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

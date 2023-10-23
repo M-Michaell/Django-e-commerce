@@ -1,0 +1,59 @@
+{% extends 'noon2/base.html' %}
+{% load static %}
+{% block title %}Update Product - Noon Enhance{% endblock %}
+
+{% block body %}
+
+<h1>Update Product</h1>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <label for="id_title" class="form-label">Product title:</label>
+  <input type="text" name="title" required="" id="id_title" class="form-control" value="{{ product.title }}">
+
+  <label for="id_description" class="form-label">Description:</label>
+
+  <input type="text" name="description" required="" id="id_description" value="{{ product.description }}"
+    class="form-control">
+
+
+  <label for="id_price" class="form-label">Price:</label>
+
+
+  <input type="number" name="price" step="any" required="" id="id_price" value="{{ product.price }}"
+    class="form-control">
+
+
+  <label for="id_stock" class="form-label">Stock:</label>
+
+
+  <input type="number" name="stock" required="" id="id_stock" value="{{ product.stock }}" class="form-control">
+
+
+  <label for="id_image" class="form-label">Image:</label>
+
+
+  <input type="file" name="image" accept="image/*" required="" id="id_image" value="{{ product.image.url }}"
+    class="form-control">
+  {% if product.image %}
+  <img src="{{ product.image.url }}" alt="{{ product.title }}" width="150">
+  {% endif %}
+
+
+  <label for="id_category" class="form-label">Category:</label>
+
+
+  <select name="category" id="category" class="form-control" select="">
+    {% for category in categories %}
+    <option>
+      {{ category }}
+    </option>
+    {% endfor %}
+  </select>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+<script src="{% static 'noon/js/script.js' %}"></script>
+
+{% endblock %}

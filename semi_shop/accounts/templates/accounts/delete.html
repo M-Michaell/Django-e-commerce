@@ -1,0 +1,29 @@
+{% extends 'noon2/base.html' %}
+{% load static %}
+{% block title %} noon enhance {% endblock %}
+
+{% block body %}
+<div class="container p-5 "">
+    <div class=" row align-items-center justify-content-between ">
+        <div class=" col-8">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p class=" fs-4 ">
+            Are You Sure
+        </p>
+        <div class="text-center">
+            <button type="submit" class="btn btn-danger text-white me-3">Submit</button>
+            <a href="{% url 'account.profile2'%}" class="btn btn-success text-white px-4">Cancel</a>
+        </div>
+    </form>
+</div>
+</div>
+</div>
+
+
+
+
+<script src="{% static  'noon/js/script.js' %}">
+
+</script>
+{% endblock %}

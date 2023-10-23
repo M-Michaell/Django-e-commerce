@@ -1,0 +1,43 @@
+{% extends 'noon2/base.html' %}
+{% load static %}
+{% block title %} noon enhance {% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="mb-4">User Profile</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">First Name:</h5>
+                    <p class="card-text">{{ user.first_name }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Last Name:</h5>
+                    <p class="card-text">{{ user.last_name }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Email:</h5>
+                    <p class="card-text">{{ user.email }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a class="btn btn-info" href="{% url 'profile-update' user.id %}">edit</a>
+    <a class="btn btn-danger" href="{% url 'profile.delete' user.id %}">Delete</a>
+</div>
+
+
+<script src="{% static  'noon/js/script.js' %}">
+
+</script>
+{% endblock %}
